@@ -7,9 +7,12 @@ import net.minestom.server.event.GlobalEventHandler
 import net.minestom.server.event.player.PlayerLoginEvent
 import net.minestom.server.instance.*
 import net.minestom.server.instance.block.Block
-
+import mu.KotlinLogging
+import net.minestom.server.entity.GameMode
 
 object HydrazineServer {
+
+    val logger = KotlinLogging.logger {}
     @JvmStatic
     fun main(args: Array<String>) {
         // Initialization
@@ -29,6 +32,8 @@ object HydrazineServer {
             val player: Player = event.player
             event.setSpawningInstance(instanceContainer)
             player.respawnPoint = Pos(0.0, 42.0, 0.0)
+            player.sendMessage("hi, stuff is probably broken")
+            player.gameMode = GameMode.CREATIVE
         }
         // Start the server on port 25565
         minecraftServer.start("0.0.0.0", 25565)
